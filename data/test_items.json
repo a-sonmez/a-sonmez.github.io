@@ -2200,7 +2200,7 @@
   {"at":"2026-10-22 15:26","model":"TestItem","test_id":96,"unit":"mmol/L","name":"Sodyum","code":"NA","result":"134.0000","reference_min":"136.0000","reference_max":"145.0000","description":"Biyokimya"},
   {"at":"2026-10-22 15:26","model":"TestItem","test_id":96,"unit":"mL/dk/1.73 m²","name":"t GFH (CKD-EPI formülü ile)","code":"GFR_CKD_EPI","result":"75.5800","reference_min":null,"reference_max":null,"description":"Biyokimya"},
   {"at":"2026-10-22 15:26","model":"TestItem","test_id":96,"unit":"mg/dL","name":"Total Bilirubin","code":"TBIL","result":"0.7400","reference_min":"0.0000","reference_max":"1.0000","description":"Biyokimya"},
-  {"at":"2026-10-22 15:26","model":"TestItem","test_id":96,"unit":"INR","name":"INR","code":"INR","result":"2.0000","reference_min":"0.8000","reference_max":"1.2000","description":"Koagülasyon"},
+  {"at":"2026-10-22 15:26","model":"TestItem","test_id":96,"unit":"INR","name":"INR","code":"INR","result":"2.0100","reference_min":"0.8000","reference_max":"1.2000","description":"Koagülasyon"},
   {"at":"2026-10-22 15:26","model":"TestItem","test_id":96,"unit":"sn","name":"Protrombin Zamanı (PT)","code":"PT","result":"19.3000","reference_min":"9.6000","reference_max":"12.0000","description":"Koagülasyon"},
   {"at":"2026-10-22 15:26","model":"TestItem","test_id":96,"unit":"%","name":"Protrombin Aktivitesi (%)","code":"PT%","result":"41.1000","reference_min":"74.4000","reference_max":"130.0000","description":"Koagülasyon"}
 ]
