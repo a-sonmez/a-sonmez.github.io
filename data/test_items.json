@@ -2242,7 +2242,7 @@
   {"at":"2026-11-10 17:46","model":"TestItem","test_id":97,"unit":"mmol/L","name":"Potasyum","code":"K","result":"4.5500","reference_min":"3.5000","reference_max":"5.5000","description":"Biyokimya"},
   {"at":"2026-11-10 17:46","model":"TestItem","test_id":97,"unit":"mmol/L","name":"Sodyum","code":"NA","result":"138.0000","reference_min":"136.0000","reference_max":"145.0000","description":"Biyokimya"},
   {"at":"2026-11-10 17:46","model":"TestItem","test_id":97,"unit":"mg/dL","name":"Total Bilirubin","code":"TBIL","result":"0.7300","reference_min":"0.0000","reference_max":"1.0000","description":"Biyokimya"},
-  {"at":"2026-11-10 17:46","model":"TestItem","test_id":97,"unit":"INR","name":"INR","code":"INR","result":"2.5000","reference_min":"0.8000","reference_max":"1.2000","description":"Koagülasyon"},
+  {"at":"2026-11-10 17:46","model":"TestItem","test_id":97,"unit":"INR","name":"INR","code":"INR","result":"2.5100","reference_min":"0.8000","reference_max":"1.2000","description":"Koagülasyon"},
   {"at":"2026-11-10 17:46","model":"TestItem","test_id":97,"unit":"sn","name":"Protrombin Zamanı (PT)","code":"PT","result":"23.4000","reference_min":"9.6000","reference_max":"12.0000","description":"Koagülasyon"},
   {"at":"2026-11-10 17:46","model":"TestItem","test_id":97,"unit":"%","name":"Protrombin Aktivitesi (%)","code":"PT%","result":"32.7000","reference_min":"74.4000","reference_max":"130.0000","description":"Koagülasyon"},
   {"at":"2026-11-10 17:47","model":"TestItem","test_id":97,"unit":"-","name":"Hemoliz İndeksi","code":"HEMOLIZ","result":"8.0000","reference_min":null,"reference_max":null,"description":"Biyokimya"},

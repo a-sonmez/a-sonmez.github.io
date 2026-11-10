@@ -68,5 +68,7 @@
   {"at":"2026-09-11 20:59","model":"MedChange","user_id":1,"medication_id":20,"id":62,"amount":0,"timespan":12,"type":"Ended","reason":"8 günlük kür sonu"},
   {"at":"2026-09-30 06:00","model":"MedChange","user_id":1,"medication_id":21,"id":68,"amount":0,"timespan":24,"type":"Ended","reason":"20 günlük kür sonu"},
   {"at":"2026-10-19 05:29","model":"MedChange","user_id":1,"medication_id":21,"id":69,"amount":100,"timespan":24,"type":"Started","reason":"Demir takviyesi (10 günlük) başlandı"},
-  {"at":"2026-10-28 06:00","model":"MedChange","user_id":1,"medication_id":21,"id":70,"amount":0,"timespan":24,"type":"Ended","reason":"10 günlük kür sonu"}
+  {"at":"2026-10-19 12:00","model":"MedChange","user_id":1,"medication_id":14,"id":70,"amount":22.5,"timespan":168,"type":"Changed","reason":"Doz ayarlaması (Pazartesi ve Perşembe 1 tablet [5 mg], diğer günler yarım tablet [2.5 mg] - Haftalık 22.5 mg)"},
+  {"at":"2026-10-28 06:00","model":"MedChange","user_id":1,"medication_id":21,"id":71,"amount":0,"timespan":24,"type":"Ended","reason":"10 günlük kür sonu"},
+  {"at":"2026-10-29 07:30","model":"MedChange","user_id":1,"medication_id":19,"id":72,"amount":2.5,"timespan":24,"type":"Changed","reason":"Doz ayarlaması (Tansiyon takibine göre günde yarım tablet [2.5 mg] idame)"}
 ]
