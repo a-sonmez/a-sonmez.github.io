@@ -604,5 +604,12 @@
   {"at":"2026-11-08 20:00","model":"Pressure","user_id":1,"sys":106,"dia":77},
   {"at":"2026-11-09 09:43","model":"Pressure","user_id":1,"sys":102,"dia":72},
   {"at":"2026-11-09 21:10","model":"Pressure","user_id":1,"sys":119,"dia":78},
-  {"at":"2026-11-10 09:40","model":"Pressure","user_id":1,"sys":113,"dia":76}
+  {"at":"2026-11-10 09:40","model":"Pressure","user_id":1,"sys":113,"dia":76},
+  {"at":"2026-11-11 09:00","model":"Pressure","user_id":1,"sys":115,"dia":79},
+  {"at":"2026-11-13 09:00","model":"Pressure","user_id":1,"sys":115,"dia":74},
+  {"at":"2026-11-14 08:40","model":"Pressure","user_id":1,"sys":145,"dia":93},
+  {"at":"2026-11-14 17:55","model":"Pressure","user_id":1,"sys":144,"dia":93},
+  {"at":"2026-11-14 19:20","model":"Pressure","user_id":1,"sys":117,"dia":80},
+  {"at":"2026-11-15 10:15","model":"Pressure","user_id":1,"sys":103,"dia":72},
+  {"at":"2026-11-15 20:00","model":"Pressure","user_id":1,"sys":116,"dia":75}
 ]
