@@ -1,0 +1,1457 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Klinik Analiz Raporu — Alaattin Sönmez</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Georgia, "Times New Roman", serif;
+        color: #1a1a2e;
+        line-height: 1.7;
+        font-size: 15px;
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 40px 32px;
+        background: #fff;
+      }
+      h1 {
+        font-size: 28px;
+        font-weight: 700;
+        color: #0f172a;
+        border-bottom: 3px solid #1e3a5f;
+        padding-bottom: 12px;
+        margin-bottom: 6px;
+      }
+      .subtitle {
+        font-size: 13px;
+        color: #64748b;
+        margin-bottom: 28px;
+        font-style: italic;
+      }
+      h2 {
+        font-size: 20px;
+        color: #1e3a5f;
+        margin: 36px 0 14px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #e2e8f0;
+      }
+      h3 {
+        font-size: 16px;
+        color: #334155;
+        margin: 22px 0 10px;
+      }
+      p {
+        margin-bottom: 12px;
+        text-align: justify;
+      }
+      ul,
+      ol {
+        margin: 8px 0 14px 24px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 14px 0 20px;
+        font-size: 13.5px;
+      }
+      th {
+        background: #1e3a5f;
+        color: #fff;
+        text-align: left;
+        padding: 9px 12px;
+        font-weight: 600;
+      }
+      td {
+        padding: 8px 12px;
+        border-bottom: 1px solid #e2e8f0;
+        vertical-align: top;
+      }
+      tr:nth-child(even) td {
+        background: #f8fafc;
+      }
+      .badge {
+        display: inline-block;
+        padding: 2px 10px;
+        border-radius: 12px;
+        font-size: 11.5px;
+        font-weight: 600;
+        font-family: system-ui, sans-serif;
+      }
+      .badge-ok {
+        background: #dcfce7;
+        color: #166534;
+      }
+      .badge-warn {
+        background: #fef9c3;
+        color: #854d0e;
+      }
+      .badge-danger {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+      .badge-info {
+        background: #e0f2fe;
+        color: #075985;
+      }
+      .callout {
+        padding: 14px 18px;
+        border-radius: 8px;
+        margin: 16px 0;
+        font-size: 14px;
+      }
+      .callout-warn {
+        background: #fff7ed;
+        border-left: 4px solid #f59e0b;
+      }
+      .callout-ok {
+        background: #f0fdf4;
+        border-left: 4px solid #22c55e;
+      }
+      .callout-danger {
+        background: #fef2f2;
+        border-left: 4px solid #ef4444;
+      }
+      .callout-info {
+        background: #eff6ff;
+        border-left: 4px solid #3b82f6;
+      }
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 12px;
+        margin: 16px 0;
+      }
+      .stat-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 14px;
+        text-align: center;
+      }
+      .stat-card .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: #1e3a5f;
+      }
+      .stat-card .lbl {
+        font-size: 12px;
+        color: #64748b;
+        margin-top: 2px;
+      }
+      .timeline {
+        position: relative;
+        padding-left: 28px;
+        margin: 16px 0;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #cbd5e1;
+      }
+      .timeline-item {
+        position: relative;
+        margin-bottom: 18px;
+      }
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -24px;
+        top: 6px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #3b82f6;
+        border: 2px solid #fff;
+        box-shadow: 0 0 0 2px #3b82f6;
+      }
+      .timeline-item .date {
+        font-weight: 700;
+        color: #1e3a5f;
+        font-size: 13px;
+      }
+      .timeline-item .desc {
+        font-size: 13.5px;
+        color: #475569;
+      }
+      .section-num {
+        display: inline-block;
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+        text-align: center;
+        background: #1e3a5f;
+        color: #fff;
+        border-radius: 50%;
+        font-size: 14px;
+        font-weight: 700;
+        margin-right: 8px;
+        font-family: system-ui, sans-serif;
+      }
+      .footer {
+        margin-top: 48px;
+        padding-top: 16px;
+        border-top: 2px solid #e2e8f0;
+        font-size: 12px;
+        color: #94a3b8;
+        text-align: center;
+      }
+      @media print {
+        body {
+          padding: 20px;
+          font-size: 12pt;
+        }
+        .stat-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Kapsamlı Klinik Analiz Raporu</h1>
+    <p class="subtitle">
+      Hasta: Alaattin Sönmez &nbsp;|&nbsp; Veri dışa aktarma: 16 Kasım 2026
+      &nbsp;|&nbsp; Analiz dönemi: 19 Şubat 2026 – 15 Kasım 2026 (270 gün)
+      &nbsp;|&nbsp; Kaynak: 2026-11-16_19-25-28_alaattin-sonmez_all-data.json
+      [1]
+    </p>
+
+    <!-- 1. HASTA PROFİLİ -->
+    <h2><span class="section-num">1</span> Hasta Profili</h2>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="val">64 yaş</div>
+        <div class="lbl">Yaş (D.T.: 01.01.1962)</div>
+      </div>
+      <div class="stat-card">
+        <div class="val">Erkek</div>
+        <div class="lbl">Cinsiyet</div>
+      </div>
+      <div class="stat-card">
+        <div class="val">174 cm</div>
+        <div class="lbl">Boy</div>
+      </div>
+      <div class="stat-card">
+        <div class="val">79,5 kg</div>
+        <div class="lbl">Güncel Kilo</div>
+      </div>
+    </div>
+    <ul>
+      <li><strong>Adres:</strong> Defne / Hatay, Türkiye [1]</li>
+      <li><strong>Sigorta:</strong> SSK [1]</li>
+      <li>
+        <strong>Temel Tanı:</strong> Akut Tip A Aort Diseksiyonu, 5,3 cm asendan
+        aort anevrizması ve ciddi aort kapak yetmezliği [1]
+      </li>
+      <li>
+        <strong>Uygulanan İşlem:</strong> Acil Bentall Prosedürü (20 Şubat 2026)
+        — 32 mm Dacron asendan aort grefti + 25 mm Carbomedics mekanik bikuspid
+        aort kapak protezi + koroner buton reimplantasyonu; derin hipotermik
+        sirkülatuar arrest altında gerçekleştirildi [1]
+      </li>
+      <li>
+        <strong>Ömür boyu gereklilik:</strong> Mekanik aort protezi nedeniyle
+        oral antikoagülant (Warfarin) kullanımı [1]
+      </li>
+    </ul>
+
+    <!-- 2. ACİL YOL & KRONOLOJİ -->
+    <h2>
+      <span class="section-num">2</span> Acil Yönlendirme Yolu ve Klinik
+      Kronoloji
+    </h2>
+    <p>
+      19 Şubat 2026'da ani başlayan yırtıcı karakterde şiddetli göğüs ve sırt
+      ağrısıyla ambulansla getirilen hasta, yaklaşık 6 saat içinde üç hastanelik
+      bir sevk zinciriyle kesin tanıya ve acil cerrahiye ulaştı [1]:
+    </p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="date">19 Şubat 2026, 17:21 — Defne Devlet Hastanesi</div>
+        <div class="desc">
+          İlk acil başvuru. EKG, kardiyak enzimler (troponin) ve rutin biyokimya
+          yapıldı. Hipertansif kriz tanısıyla ileri merkeze sevki başlatıldı
+          [1].
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">19 Şubat 2026, 18:44 — MKÜ Hastanesi</div>
+        <div class="desc">
+          İntrakraniyal kanama ekartasyonu için acil Diffüzyon MRG (20:17) ve
+          kontrastsız Beyin BT (20:30) çekildi. Aktif kanama saptanmadı [1].
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">19 Şubat 2026, 21:41 — Kırıkhan Devlet Hastanesi</div>
+        <div class="desc">
+          Kontrastlı torakoabdominal BT anjiyografi tamamlandı. Kesin tanı: Aort
+          kökünden iliak bifurkasyona uzanan Tip A aort diseksiyonu + 5,3 cm
+          asendan aort anevrizması. Acil cerrahiye sevk kararı [1].
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">
+          19 Şubat 2026, 23:22 — Özel İskenderun Gelişim Hastanesi
+        </div>
+        <div class="desc">
+          KVC servisine acil yatış. Pre-op crossmatch ve kapsamlı yoğun bakım
+          hazırlık paneli tamamlandı [1].
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">20 Şubat 2026, 08:00 — Cerrahi Operasyon</div>
+        <div class="desc">
+          Derin hipotermik sirkülatuar arrest altında Bentall prosedürü. 32 mm
+          Dacron greft, 25 mm Carbomedics mekanik AOP, koroner buton
+          implantasyonu. Selektif antegrad serebral perfüzyon (sağ brakial + sağ
+          CKA kanülasyonu) uygulandı [1].
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">2 Mart 2026 — Taburculuk</div>
+        <div class="desc">
+          Başarılı ameliyat ve iyileşme süreci. Ömür boyu Warfarin raporu
+          çıkarıldı. Günlük idame ilaçlar (Dilatrend, EcopirinPro vb.)
+          başlatıldı [1].
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">
+          30–31 Mart 2026 — Yatış (Kabızlık + Sternal Yara)
+        </div>
+        <div class="desc">
+          Şiddetli kabızlık, bulantı/kusma ve sternal yara enfeksiyonu takibi
+          için yatış. CRP: 101,4 mg/L. Lavman uygulandı; ertesi gün taburcu [1].
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">16–18 Nisan 2026 — Evde Hipertansif Krizler</div>
+        <div class="desc">
+          Üç akut epizot: 147/96 → 156/97 → 168/103 mmHg. Her seferinde dilaltı
+          Kapril (Kaptopril) 25 mg uygulandı. İki epizotta tansiyon 115/84 ve
+          117/86'ya geriledi; bir epizotta takip ölçümü girilmedi [1].
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">23 Temmuz 2026 — Yatış (Sternal Dehissans)</div>
+        <div class="desc">
+          Sternal insizyon bölgesinde dikiş açılması (dehissans), şiddetli
+          enfeksiyon ve doku defekti. Çoklu sütür, beyaz kan transfüzyonu, yoğun
+          yara bakımı. Cipro 750 mg günde 2 + Augmentin 1000 mg günde 2 +
+          Oksapar 0,6 ml günde 2 başlatıldı [1].
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">28 Temmuz 2026 — Taburculuk</div>
+        <div class="desc">
+          Taburcu oldu. Panto, Dilatrend, EcopirinPro yeniden başlatıldı [1].
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">4–11 Eylül 2026 — Antibiyotik Dönemi</div>
+        <div class="desc">
+          Klamoks (Amoksisilin) 1000 mg günde 2, 8 günlük kür. Muhtemelen yeni
+          bir enfeksiyon tablosu [1].
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. TANSİYON -->
+    <h2><span class="section-num">3</span> Tansiyon Analizi</h2>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="val">613</div>
+        <div class="lbl">Toplam Tansiyon Ölçümü (270 gün)</div>
+      </div>
+      <div class="stat-card">
+        <div class="val">114/77</div>
+        <div class="lbl">Genel Ortalama (mmHg)</div>
+      </div>
+      <div class="stat-card">
+        <div class="val">110/74</div>
+        <div class="lbl">En Son (15 Kas 2026)</div>
+      </div>
+      <div class="stat-card">
+        <div class="val">145/93</div>
+        <div class="lbl">Son 7 Günlük Zirve</div>
+      </div>
+    </div>
+
+    <table>
+      <tr>
+        <th>Dönem</th>
+        <th>Ölçüm Sayısı</th>
+        <th>Ortalama (mmHg)</th>
+        <th>Önceki Döneme Göre</th>
+        <th>Durum</th>
+      </tr>
+      <tr>
+        <td>Son 3 gün (13–15 Kas)</td>
+        <td>6</td>
+        <td>123/81</td>
+        <td>↑ 114/78'den</td>
+        <td><span class="badge badge-warn">Biraz yüksek</span></td>
+      </tr>
+      <tr>
+        <td>Son 7 gün (09–15 Kas)</td>
+        <td>10</td>
+        <td>119/79</td>
+        <td>↑ 113/76'dan</td>
+        <td><span class="badge badge-warn">Yükseliş eğilimi</span></td>
+      </tr>
+      <tr>
+        <td>Son 10 gün (06–15 Kas)</td>
+        <td>15</td>
+        <td>117/78</td>
+        <td>↑ 111/75'ten</td>
+        <td><span class="badge badge-warn">Yükseliş eğilimi</span></td>
+      </tr>
+      <tr>
+        <td>Son 15 gün (01–15 Kas)</td>
+        <td>24</td>
+        <td>116/78</td>
+        <td>↑ 112/75'ten</td>
+        <td><span class="badge badge-ok">Kabul edilebilir</span></td>
+      </tr>
+      <tr>
+        <td>Son 30 gün (17 Eki–15 Kas)</td>
+        <td>50</td>
+        <td>114/76</td>
+        <td>Stabil</td>
+        <td><span class="badge badge-ok">Normal</span></td>
+      </tr>
+      <tr>
+        <td>Son 45 gün (02 Eki–15 Kas)</td>
+        <td>82</td>
+        <td>115/77</td>
+        <td>Stabil</td>
+        <td><span class="badge badge-ok">Normal</span></td>
+      </tr>
+      <tr>
+        <td>Son 60 gün (17 Eyl–15 Kas)</td>
+        <td>111</td>
+        <td>114/77</td>
+        <td>↓ İyileşme</td>
+        <td><span class="badge badge-ok">Normal</span></td>
+      </tr>
+      <tr>
+        <td>Son 90 gün (18 Ağu–15 Kas)</td>
+        <td>178</td>
+        <td>114/77</td>
+        <td>↓ İyileşme</td>
+        <td><span class="badge badge-ok">Normal</span></td>
+      </tr>
+      <tr>
+        <td>Tam 270 gün</td>
+        <td>613</td>
+        <td>114/77</td>
+        <td>—</td>
+        <td><span class="badge badge-ok">Normal aralık</span></td>
+      </tr>
+    </table>
+    [1]
+
+    <div class="callout callout-danger">
+      <strong>⚠️ Damar Basıncı Uyarısı:</strong> Dönem boyunca ulaşılan en
+      yüksek sistolik değer <strong>168 mmHg</strong> (18 Nisan 2026). Dacron
+      aort grefti olan bir hastada önerilen üst sınır
+      <strong>&lt; 130 mmHg sistolik</strong>'dir. Son 7 gündeki tansiyon
+      <strong>145/93 mmHg</strong>'ye kadar yükselmiş olup bu hedefin
+      üzerindedir. Yakın izlem ve gerekirse antihipertansif doz ayarlaması
+      önerilir [1].
+    </div>
+
+    <div class="callout callout-info">
+      <strong>Acil Kaptopril Epizotları (Nisan 2026):</strong> Üç hipertansif
+      kriz dilaltı Kapril (Kaptopril) 25 mg gerektirdi. İki epizotta tansiyon
+      sırasıyla 115/84 ve 117/86 mmHg'ye gerileyerek etkin müdahale doğrulandı.
+      17 Nisan 23:39'daki epizotta takip ölçümü kaydedilmemiş olup ilacın etkisi
+      tam değerlendirilememiştir [1].
+    </div>
+
+    <!-- 4. KİLO -->
+    <h2><span class="section-num">4</span> Kilo ve Sıvı Dengesi</h2>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="val">79,5 kg</div>
+        <div class="lbl">Güncel (11 Kas 2026)</div>
+      </div>
+      <div class="stat-card">
+        <div class="val">78,6 kg</div>
+        <div class="lbl">Dönem Başı</div>
+      </div>
+      <div class="stat-card">
+        <div class="val">+0,9 kg</div>
+        <div class="lbl">Dönem İçinde Net Değişim</div>
+      </div>
+      <div class="stat-card">
+        <div class="val">−5,8 kg</div>
+        <div class="lbl">Kümülatif (tüm dönem)</div>
+      </div>
+    </div>
+    <p>
+      Son 7 günde kilo 79,8 → 79,5 kg'a (−0,3 kg) gerilemiştir; bu sıvı
+      retansiyonuna işaret etmemektedir. Hiçbir analiz penceresinde konjestif
+      kalp yetmezliği veya kontrolsüz ödem düşündüren tehlikeli kilo salınımı
+      saptanmamıştır [1].
+    </p>
+    <div class="callout callout-ok">
+      <strong>✅</strong> Klinik açıdan anlamlı sıvı birikimi veya ani kilo
+      dalgalanması tespit edilmemiştir.
+    </div>
+
+    <!-- 5. LABORATUVAR -->
+    <h2><span class="section-num">5</span> Laboratuvar Bulguları</h2>
+    <h3>5.1 En Güncel Panel — 10 Kasım 2026 (karşılaştırma: 22 Ekim 2026)</h3>
+    <table>
+      <tr>
+        <th>Parametre</th>
+        <th>Birim</th>
+        <th>Güncel</th>
+        <th>Önceki</th>
+        <th>Referans</th>
+        <th>Δ</th>
+        <th>Değerlendirme</th>
+      </tr>
+      <tr>
+        <td>INR</td>
+        <td>oran</td>
+        <td><strong>2,51</strong></td>
+        <td>2,01</td>
+        <td>2,0 – 3,0 (mekanik kapak)</td>
+        <td>+0,50</td>
+        <td><span class="badge badge-ok">Terapötik ✓</span></td>
+      </tr>
+      <tr>
+        <td>PT</td>
+        <td>s</td>
+        <td><strong>23,4</strong></td>
+        <td>19,3</td>
+        <td>—</td>
+        <td>+4,1</td>
+        <td><span class="badge badge-info">INR ile uyumlu</span></td>
+      </tr>
+      <tr>
+        <td>aPTT</td>
+        <td>s</td>
+        <td><strong>50,4</strong></td>
+        <td>44,7</td>
+        <td>21 – 36</td>
+        <td>+5,7</td>
+        <td><span class="badge badge-warn">Yüksek ⚠</span></td>
+      </tr>
+      <tr>
+        <td>Trombosit</td>
+        <td>×10⁹/L</td>
+        <td><strong>272</strong></td>
+        <td>281</td>
+        <td>150 – 400</td>
+        <td>−9</td>
+        <td><span class="badge badge-ok">Normal</span></td>
+      </tr>
+      <tr>
+        <td>Lökosit (WBC)</td>
+        <td>×10⁹/L</td>
+        <td><strong>7,83</strong></td>
+        <td>9,89</td>
+        <td>3,99 – 10,30</td>
+        <td>−2,06</td>
+        <td><span class="badge badge-ok">Normal, ↓</span></td>
+      </tr>
+      <tr>
+        <td>CRP</td>
+        <td>mg/L</td>
+        <td><strong>4,4</strong></td>
+        <td>4,7</td>
+        <td>&lt; 5</td>
+        <td>−0,30</td>
+        <td><span class="badge badge-ok">Normal</span></td>
+      </tr>
+      <tr>
+        <td>Hemoglobin</td>
+        <td>g/dL</td>
+        <td><strong>12,0</strong></td>
+        <td>11,0</td>
+        <td>13,0 – 17,0 (erkek)</td>
+        <td>+1,00</td>
+        <td><span class="badge badge-warn">Hafif düşük ⚠</span></td>
+      </tr>
+      <tr>
+        <td>Hematokrit</td>
+        <td>%</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td><span class="badge badge-warn">Alt sınırlarda ⚠</span></td>
+      </tr>
+      <tr>
+        <td>Limfosit #</td>
+        <td>×10⁹/L</td>
+        <td><strong>3,61</strong></td>
+        <td>—</td>
+        <td>1,0 – 3,0</td>
+        <td>—</td>
+        <td><span class="badge badge-warn">Hafif yüksek ⚠</span></td>
+      </tr>
+      <tr>
+        <td>RDW-CV</td>
+        <td>%</td>
+        <td><strong>23,30</strong></td>
+        <td>—</td>
+        <td>11,5 – 14,5</td>
+        <td>—</td>
+        <td><span class="badge badge-warn">Yüksek ⚠</span></td>
+      </tr>
+      <tr>
+        <td>RDW-SD</td>
+        <td>fL</td>
+        <td><strong>71,50</strong></td>
+        <td>—</td>
+        <td>39 – 46</td>
+        <td>—</td>
+        <td><span class="badge badge-warn">Yüksek ⚠</span></td>
+      </tr>
+      <tr>
+        <td>Kreatinin</td>
+        <td>mg/dL</td>
+        <td><strong>0,98</strong></td>
+        <td>0,98</td>
+        <td>0,7 – 1,3</td>
+        <td>0</td>
+        <td><span class="badge badge-ok">Normal, stabil</span></td>
+      </tr>
+      <tr>
+        <td>ALT</td>
+        <td>U/L</td>
+        <td><strong>12</strong></td>
+        <td>—</td>
+        <td>0 – 65</td>
+        <td>—</td>
+        <td><span class="badge badge-ok">Normal</span></td>
+      </tr>
+      <tr>
+        <td>AST</td>
+        <td>U/L</td>
+        <td><strong>15</strong></td>
+        <td>—</td>
+        <td>0 – 40</td>
+        <td>—</td>
+        <td><span class="badge badge-ok">Normal</span></td>
+      </tr>
+    </table>
+    [1]
+
+    <h3>5.2 Önceki Laboratuvar Anlık Görüntüleri</h3>
+    <table>
+      <tr>
+        <th>Tarih</th>
+        <th>ALB (g/L)</th>
+        <th>ALT (U/L)</th>
+        <th>AST (U/L)</th>
+        <th>ALP (U/L)</th>
+        <th>AMY (U/L)</th>
+        <th>WBC</th>
+        <th>aPTT</th>
+        <th>Not</th>
+      </tr>
+      <tr>
+        <td>16 Mar 2026</td>
+        <td><span class="badge badge-warn">34 ↓</span></td>
+        <td>27</td>
+        <td>24</td>
+        <td>—</td>
+        <td><span class="badge badge-warn">120 ↑</span></td>
+        <td>—</td>
+        <td>—</td>
+        <td>Post-op; ALB ve AMY aralık dışı [1]</td>
+      </tr>
+      <tr>
+        <td>15 Tem 2026</td>
+        <td>38</td>
+        <td>11</td>
+        <td>—</td>
+        <td>95</td>
+        <td>93</td>
+        <td>—</td>
+        <td>—</td>
+        <td>Tüm parametreler normal [1]</td>
+      </tr>
+      <tr>
+        <td>25 Tem 2026</td>
+        <td>—</td>
+        <td>12</td>
+        <td>15</td>
+        <td>—</td>
+        <td>—</td>
+        <td>9,88</td>
+        <td><span class="badge badge-warn">40,5 ↑</span></td>
+        <td>Dehissans sonrası; aPTT hafif yüksek [1]</td>
+      </tr>
+    </table>
+
+    <h3>5.3 Yorum ve Değerlendirme</h3>
+    <div class="callout callout-ok">
+      <strong>Koagülasyon / Kapak Koruması:</strong> INR 2,51, mekanik aort
+      protezi için 2,0–3,0 terapötik penceresinin sağlam şekilde ortasındadır.
+      2,01'den 2,51'e yükseliş, 19 Ekim'deki Warfmadin doz artışının (20 → 22,5
+      mg/hafta) doğru olduğunu doğrulamaktadır. Trombosit sayısı stabil. Uzun
+      vadeli kapak güvenliği açısından çok iyi bir tablo [1].
+    </div>
+    <div class="callout callout-warn">
+      <strong>Anemi ve Eritrosit Parametreleri:</strong> HGB 12,0 g/dL, 11,0'dan
+      iyileşse de erkek referans alt sınırının (13,0) altında kalmaktadır.
+      RDW-CV (23,3%) ve RDW-SD (71,5 fL) yüksekliği <em>anizositozu</em> —
+      kırmızı kan hücresi boyutlarında değişkenliği — işaret etmekte; bu tablo
+      demir eksikliği veya post-operatif anemi ile uyumludur. Hastaya Eylül ve
+      Ekim 2026'da FerroSanolDuodenal (demir) kürleri verilmiş olup tedavi ekibi
+      bu durumu zaten ele almaktadır. Limfosit sayısındaki hafif artış (3,61)
+      spesifik değildir; düşük seviyeli viral veya post-enfeksiyonel bir süreç
+      dışlanmalı, kontrol tahlili planlanmalıdır [1].
+    </div>
+    <div class="callout callout-ok">
+      <strong>Enfeksiyon / İnflamasyon:</strong> WBC (7,83) ve CRP (4,4) normal
+      sınırlar içinde ve önceki değerlere göre düşmekte (WBC 9,89, CRP 4,7).
+      Mart 2026'daki CRP 101,4'lik sternal yara enfeksiyonu tepe değerinden tam
+      olarak iyileşilmiştir. Aktif veya gizli bir enfeksiyona laboratuvar
+      bulgusu yoktur [1].
+    </div>
+    <div class="callout callout-ok">
+      <strong>Organ Fonksiyonları:</strong> Karaciğer enzimleri (ALT 12, AST 15)
+      ve böbrek fonksiyonu (Kreatinin 0,98) stabil ve normal sınırlarda. Birden
+      fazla antibiyotik kürü ve kronik PPI kullanımına bağlı herhangi bir
+      hepatotoksisite izlenmemektedir [1].
+    </div>
+
+    <!-- 6. İLAÇLAR -->
+    <h2><span class="section-num">6</span> İlaç Tedavisi Analizi</h2>
+
+    <h3>6.1 Mevcut Aktif Rejim (5 ilaç)</h3>
+    <table>
+      <tr>
+        <th>İlaç</th>
+        <th>Cins / Grubu</th>
+        <th>Doz</th>
+        <th>Sıklık</th>
+        <th>Amaç</th>
+      </tr>
+      <tr>
+        <td><strong>Warfmadin</strong></td>
+        <td>Warfarin (VKA)</td>
+        <td>22,5 mg</td>
+        <td>Haftalık toplam (4,5 tablet)</td>
+        <td>Mekanik kapak tromboemboli profilaksisi</td>
+      </tr>
+      <tr>
+        <td><strong>EcopirinPro</strong></td>
+        <td>Aspirin 75 + Klopidogrel 75</td>
+        <td>81 mg</td>
+        <td>Günde 1</td>
+        <td>Çift yol antitrombotik (kapak + greft)</td>
+      </tr>
+      <tr>
+        <td><strong>Coversyl</strong></td>
+        <td>Perindopril (AİİE)</td>
+        <td>2,5 mg (½ tablet)</td>
+        <td>Günde 1</td>
+        <td>Tansiyon kontrolü; aort greft koruması</td>
+      </tr>
+      <tr>
+        <td><strong>Dilatrend</strong></td>
+        <td>Furosemid (Löp diüretik)</td>
+        <td>6,25 mg</td>
+        <td>Günde 2</td>
+        <td>Sıvı yönetimi; kalp yük azaltma</td>
+      </tr>
+      <tr>
+        <td><strong>Panto</strong></td>
+        <td>Pantoprazol (PPI)</td>
+        <td>40 mg</td>
+        <td>Günde 1</td>
+        <td>GI koruma (çift antitrombotik + VKA ile)</td>
+      </tr>
+    </table>
+    [1]
+
+    <h3>6.2 Warfarin (Warfmadin) Doz Ayar Geçmişi — 14 Değişiklik</h3>
+    <p>
+      Kayıtlardaki en dinamik şekilde ayarlanan ilaçtır. Her bir değişiklik
+      aşağıda listelenmiştir [1]:
+    </p>
+    <table>
+      <tr>
+        <th>#</th>
+        <th>Tarih</th>
+        <th>Haftalık Doz (mg)</th>
+        <th>Tablet/Hafta</th>
+        <th>Yön</th>
+        <th>Muhtemel Bağlam</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2 Mar</td>
+        <td>30</td>
+        <td>6</td>
+        <td>— (başlangıç)</td>
+        <td>Post-Bentall, yeni VKA</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>9 Mar</td>
+        <td>25</td>
+        <td>5</td>
+        <td>↓</td>
+        <td>INR muhtemelen terapötik üstünde</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>18 Mar</td>
+        <td>11,25</td>
+        <td>2,25</td>
+        <td>↓↓ Büyük kesinti</td>
+        <td>INR aşımı; Tavanic/Cipro etkileşimi</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>23 Mar</td>
+        <td>12,5</td>
+        <td>2,5</td>
+        <td>↑</td>
+        <td>İnce ayar yukarı</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>30 Mar</td>
+        <td>10</td>
+        <td>2</td>
+        <td>↓</td>
+        <td>Yatış dönemi; enfeksiyon metabolizmayı etkiledi</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>6 Nis</td>
+        <td>8,75</td>
+        <td>1,75</td>
+        <td>↓</td>
+        <td>En düşük doz; INR hâlâ yüksek olabilir</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>20 Nis</td>
+        <td>11,25</td>
+        <td>2,25</td>
+        <td>↑</td>
+        <td>Antibiyotikler bitti; karaciğer toparlanıyor</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>5 May</td>
+        <td>13,75</td>
+        <td>2,75</td>
+        <td>↑</td>
+        <td>Hedefe geri titrasyon</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>13 May</td>
+        <td>20</td>
+        <td>4</td>
+        <td>↑</td>
+        <td>Bakım aralığına yaklaşıyor</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>22 Tem</td>
+        <td colspan="2"><em>Kesildi</em></td>
+        <td>—</td>
+        <td>Dehissans yatışı; Oksapar (enoksaparin) ile köprü</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>1 Ağu</td>
+        <td>20</td>
+        <td>4</td>
+        <td>— (yeniden)</td>
+        <td>Hastane sonrası başlatıldı</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>11 Ağu</td>
+        <td>25</td>
+        <td>5</td>
+        <td>↑</td>
+        <td>INR subterapötik → artırıldı</td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td>18 Ağu</td>
+        <td>20</td>
+        <td>4</td>
+        <td>↓</td>
+        <td>INR hedef üstünde → azaltıldı</td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td>19 Eki</td>
+        <td><strong>22,5</strong></td>
+        <td><strong>4,5</strong></td>
+        <td>↑</td>
+        <td><strong>Mevcut doz</strong>; INR 2,01 → 2,51 ✓</td>
+      </tr>
+    </table>
+
+    <div class="callout callout-info">
+      <strong>Yorum:</strong> Başlangıçtaki "testere dişi" paterni (Mar–May
+      arasında 30 → 11,25 → 8,75 → 20 mg/hafta) post-operatif erken warfarin
+      başlangıcının tipik tablosudur. Eş zamanlı kullanılan antibiyotikler
+      (Tavanic, Stafine, Cipro) karaciğer CYP450 enzimlerini inhibe ederek
+      warfarin metabolizmasını yavaşlatır; bu da INR'de geçici aşırı yükselme ve
+      büyük doz kesintileri gerektirir. Antibiyotiklerin kesilmesiyle karaciğer
+      oto-indüksiyonu devreye girer ve doz yeniden yükseltilmek zorunda kalınır.
+      Temmuz'daki 1 haftalık kesinti (22 Tem – 1 Ağu), sternal dehissans yatışı
+      sırasında <strong>Oksapar (enoksaparin 0,6 ml günde 2)</strong> ile 8 gün
+      süreyle köprülenmesiyle örtüşmektedir — mekanik kapaklı hasta için
+      standart ve uygun bir protokoldür [1].
+    </div>
+
+    <h3>6.3 Diğer Önemli Doz Değişiklikleri</h3>
+    <table>
+      <tr>
+        <th>İlaç</th>
+        <th>Tarih</th>
+        <th>Değişiklik</th>
+        <th>Bağlam</th>
+      </tr>
+      <tr>
+        <td>Dilatrend</td>
+        <td>17 Mar → 19 Mar</td>
+        <td>6,25 → <strong>12,5</strong> → 6,25 mg günde 2</td>
+        <td>Post-op geçici sıvı retansiyonu; 48 saat içinde geri alındı [1]</td>
+      </tr>
+      <tr>
+        <td>Dilatrend</td>
+        <td>7 Nis → 17 Nis</td>
+        <td>Kesildi → Yeniden başlandı</td>
+        <td>HT kriz yönetimi sırasında kısa ara [1]</td>
+      </tr>
+      <tr>
+        <td>Coversyl</td>
+        <td>4 Ağu → 29 Eki</td>
+        <td>5 mg → <strong>2,5 mg</strong> günde 1</td>
+        <td>
+          Tansiyon stabilize olunca doz yarıya düşürüldü; ortalama 114/77'de
+          tutuldu [1]
+        </td>
+      </tr>
+      <tr>
+        <td>EcopirinPro</td>
+        <td>16 Mar → 21 Nis</td>
+        <td>~5 haftalık ara</td>
+        <td>
+          Antibiyotik/enfeksiyon fazında kesildi; 21 Nis'te yeniden başlatıldı
+          [1]
+        </td>
+      </tr>
+      <tr>
+        <td>Coraspin (Aspirin 100 mg)</td>
+        <td>23–27 Tem</td>
+        <td>5 günlük kür</td>
+        <td>Dehissans yatışı sırasında geçici antitrombotik köprü [1]</td>
+      </tr>
+    </table>
+
+    <h3>6.4 Antibiyotik / Antimikroten Kürleri (7 epizot)</h3>
+    <table>
+      <tr>
+        <th>#</th>
+        <th>İlaç(lar)</th>
+        <th>Doz</th>
+        <th>Süre</th>
+        <th>Tarih</th>
+        <th>Muhtemel Endikasyon</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Tavanic (Moksifloksasin)</td>
+        <td>500 mg günde 1</td>
+        <td>7 gün</td>
+        <td>2–8 Mar</td>
+        <td>Post-Bentall profilaksi / erken yara</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Stafine (Klindamisin)</td>
+        <td>500 mg günde 3</td>
+        <td>11 gün</td>
+        <td>26 Mar–5 Nis</td>
+        <td>Sternal yara enfeksiyonu</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Cipro (Siprofloksasin)</td>
+        <td>750 mg günde 2</td>
+        <td>7 gün</td>
+        <td>26 Mar–1 Nis</td>
+        <td>Sternal yara (eş zamanlı)</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Mikostatin (Nistatin)</td>
+        <td>3 ml günde 3</td>
+        <td>4 gün</td>
+        <td>26–29 Mar</td>
+        <td>Fungal profilaksi (post-op kandida riski)</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Augmentin (Amok/Klav)</td>
+        <td>1000 mg günde 2</td>
+        <td>8 gün</td>
+        <td>12–19 May</td>
+        <td>Tekrarlayan / sekonder enfeksiyon</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Augmentin + Cipro</td>
+        <td>1000 + 750 mg günde 2</td>
+        <td>8 gün</td>
+        <td>28 Tem–4 Ağu</td>
+        <td>Sternal dehissans — çoklu ajan</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>Klamoks (Amoksisilin)</td>
+        <td>1000 mg günde 2</td>
+        <td>8 gün</td>
+        <td>4–11 Eyl</td>
+        <td>Yeni enfeksiyon tablosu</td>
+      </tr>
+    </table>
+    [1]
+
+    <div class="callout callout-warn">
+      <strong>Yorum:</strong> 9 aydan kısa sürede 7 ayrı antimikroten epizodu
+      oldukça yüksek bir sıklıktır ve mekanik protezi olan bir post-sternotomi
+      hastasının kırılganlığını vurgular. Her kürde warfarin etkileşim riski
+      (özellikle Cipro, Moksifloksasin, Amoksisilin — CYP2C9/1A2 inhibisyonu)
+      erken "testere dişi" warfarin titrasyonuna katkıda bulunmuştur. Temmuz
+      dehissans epizodunda çoklu ajan tedavisi (Augmentin + Cipro + Oksapar)
+      derin sternal yara enfeksiyonu için uygun bir eskalasyon olarak
+      değerlendirilir [1].
+    </div>
+
+    <h3>6.5 Tam İlaç Envanteri (22 ajan)</h3>
+    <table>
+      <tr>
+        <th>İlaç</th>
+        <th>Grubu</th>
+        <th>Kullanım Dönemi</th>
+        <th>Durum</th>
+      </tr>
+      <tr>
+        <td>Warfmadin</td>
+        <td>VKA</td>
+        <td>2 Mar – günümüz (Tem 1 hafta ara)</td>
+        <td><span class="badge badge-ok">Aktif</span></td>
+      </tr>
+      <tr>
+        <td>Panto</td>
+        <td>PPI</td>
+        <td>2 Mar – günümüz (Tem kısa ara)</td>
+        <td><span class="badge badge-ok">Aktif</span></td>
+      </tr>
+      <tr>
+        <td>Dilatrend</td>
+        <td>Löp diüretik</td>
+        <td>2 Mar – günümüz (kısa aralar)</td>
+        <td><span class="badge badge-ok">Aktif</span></td>
+      </tr>
+      <tr>
+        <td>EcopirinPro</td>
+        <td>Çift antitrombotik</td>
+        <td>2 Mar – günümüz (Mar–Nis ara)</td>
+        <td><span class="badge badge-ok">Aktif</span></td>
+      </tr>
+      <tr>
+        <td>Coversyl</td>
+        <td>AİİE</td>
+        <td>4 Ağu – günümüz</td>
+        <td><span class="badge badge-ok">Aktif</span></td>
+      </tr>
+      <tr>
+        <td>Cordarone (Amiodaron)</td>
+        <td>Ritim bozucu</td>
+        <td>2–12 Mar</td>
+        <td><span class="badge badge-info">Tamamlandı</span></td>
+      </tr>
+      <tr>
+        <td>BelocZOK (Metoprolol XL)</td>
+        <td>Beta bloker</td>
+        <td>9–17 Nis</td>
+        <td><span class="badge badge-info">Tamamlandı</span></td>
+      </tr>
+      <tr>
+        <td>Kapril (Kaptopril)</td>
+        <td>AİİE (SOS)</td>
+        <td>17–18 Nis (3 doz)</td>
+        <td><span class="badge badge-info">Yalnızca acil</span></td>
+      </tr>
+      <tr>
+        <td>Tavanic (Moksifloksasin)</td>
+        <td>Flokinolon</td>
+        <td>2–8 Mar</td>
+        <td><span class="badge badge-info">Tamamlandı</span></td>
+      </tr>
+      <tr>
+        <td>Stafine (Klindamisin)</td>
+        <td>Likozamid</td>
+        <td>26 Mar–5 Nis</td>
+        <td><span class="badge badge-info">Tamamlandı</span></td>
+      </tr>
+      <tr>
+        <td>Cipro (Siprofloksasin)</td>
+        <td>Flokinolon</td>
+        <td>Mar ×1, Tem–Ağu ×1</td>
+        <td><span class="badge badge-info">Tamamlandı</span></td>
+      </tr>
+      <tr>
+        <td>Augmentin</td>
+        <td>Amok/Klav</td>
+        <td>May ×1, Haz ×1, Tem–Ağu ×1</td>
+        <td><span class="badge badge-info">Tamamlandı</span></td>
+      </tr>
+      <tr>
+        <td>Klamoks (Amoksisilin)</td>
+        <td>Penisilin</td>
+        <td>4–11 Eyl</td>
+        <td><span class="badge badge-info">Tamamlandı</span></td>
+      </tr>
+      <tr>
+        <td>Mikostatin (Nistatin)</td>
+        <td>Antifungal</td>
+        <td>26–29 Mar</td>
+        <td><span class="badge badge-info">Tamamlandı</span></td>
+      </tr>
+      <tr>
+        <td>Oksapar (Enoksaparin)</td>
+        <td>LMWH</td>
+        <td>27 Tem–3 Ağu</td>
+        <td><span class="badge badge-info">Köprü — tamamlandı</span></td>
+      </tr>
+      <tr>
+        <td>Coraspin (Aspirin 100 mg)</td>
+        <td>Antitrombotik</td>
+        <td>23–27 Tem</td>
+        <td><span class="badge badge-info">Tamamlandı</span></td>
+      </tr>
+      <tr>
+        <td>Levopront</td>
+        <td>Öksürük baskılayıcı</td>
+        <td>26–30 Mar</td>
+        <td><span class="badge badge-info">Tamamlandı</span></td>
+      </tr>
+      <tr>
+        <td>Apikobal (B vitamini)</td>
+        <td>Vitamin</td>
+        <td>2 Mar–4 May</td>
+        <td><span class="badge badge-info">Tamamlandı</span></td>
+      </tr>
+      <tr>
+        <td>GeralginePlus</td>
+        <td>Ağrı kesici</td>
+        <td>26–29 Mar</td>
+        <td><span class="badge badge-info">Tamamlandı</span></td>
+      </tr>
+      <tr>
+        <td>Sulcid</td>
+        <td>—</td>
+        <td>27–28 Tem</td>
+        <td><span class="badge badge-info">Tamamlandı</span></td>
+      </tr>
+      <tr>
+        <td>FerroSanolDuodenal (Fe)</td>
+        <td>Demir takviyesi</td>
+        <td>Eyl ×1, Eki ×1</td>
+        <td>
+          <span class="badge badge-info">Tamamlandı (tekrarlanabilir)</span>
+        </td>
+      </tr>
+    </table>
+    [1]
+
+    <!-- 7. RİSK DEĞERLENDİRMESİ -->
+    <h2><span class="section-num">7</span> Bütünleşik Risk Değerlendirmesi</h2>
+    <table>
+      <tr>
+        <th>Risk Alanı</th>
+        <th>Mevcut Durum</th>
+        <th>Trend</th>
+        <th>Şiddet</th>
+      </tr>
+      <tr>
+        <td>Mekanik kapak trombozu</td>
+        <td>INR 2,51 — terapötik</td>
+        <td>↑ (doz artırıldı, hedefte)</td>
+        <td><span class="badge badge-ok">Düşük (kontrol altında)</span></td>
+      </tr>
+      <tr>
+        <td>Protetik kapak endokarditi</td>
+        <td>CRP/WBC normal; ateş kaydı yok</td>
+        <td>Stabil</td>
+        <td><span class="badge badge-ok">Düşük</span></td>
+      </tr>
+      <tr>
+        <td>Aort greft stresi / diseksiyon nüksü</td>
+        <td>Ortalama 114/77; son zirve 145/93</td>
+        <td>Son 7 günde hafif ↑</td>
+        <td><span class="badge badge-warn">Orta — izlem gerekli</span></td>
+      </tr>
+      <tr>
+        <td>Hipertansif kriz riski</td>
+        <td>Nisan'da 3 epizot (168/103'e kadar)</td>
+        <td>Kontrol altında, Coversyl ayarlandı</td>
+        <td><span class="badge badge-ok">Düşük (kontrol altında)</span></td>
+      </tr>
+      <tr>
+        <td>Anemi / demir eksikliği</td>
+        <td>HGB 12,0 (alt sınırında)</td>
+        <td>↑ 11,0'dan toparlanmış</td>
+        <td><span class="badge badge-warn">Orta — izlem gerekli</span></td>
+      </tr>
+      <tr>
+        <td>Sternal yara iyileşmesi</td>
+        <td>28 Tem'de taburcu; CRP 4,4, WBC 7,83 normal</td>
+        <td>Stabil / iyileşme</td>
+        <td><span class="badge badge-ok">Düşük (kontrol altında)</span></td>
+      </tr>
+      <tr>
+        <td>Karaciğer / böbrek toksisitesi</td>
+        <td>ALT 12, AST 15, Kreatinin 0,98 — tümü normal</td>
+        <td>Stabil</td>
+        <td><span class="badge badge-ok">Düşük</span></td>
+      </tr>
+      <tr>
+        <td>Ritim bozukluğu (AF riski)</td>
+        <td>Cordarone Mart'ta tamamlandı; ek aritmi kaydı yok</td>
+        <td>—</td>
+        <td><span class="badge badge-ok">Düşük</span></td>
+      </tr>
+      <tr>
+        <td>Polifarmasi / ilaç etkileşimi</td>
+        <td>5 aktif ilaç; geçmişte 22 ajan kullanılmış</td>
+        <td>Stabil</td>
+        <td><span class="badge badge-warn">Orta — etkileşim kontrolü</span></td>
+      </tr>
+      <tr>
+        <td>Sıvı retansiyonu / ödem</td>
+        <td>Kilo stabil (79,5 kg); Dalatrend 6,25 mg günde 2</td>
+        <td>Stabil</td>
+        <td><span class="badge badge-ok">Düşük</span></td>
+      </tr>
+    </table>
+
+    <div class="callout callout-warn">
+      <strong>⚠️ Dikkat Edilmesi Gereken Alanlar:</strong><br />
+      (1) Son 7 günde tansiyon ortalaması 119/79'a, zirve 145/93 mmHg'ye
+      yükselmiş olup hedef (&lt;130 mmHg sistolik) aşılmaktadır. Coversyl
+      dozunun (29 Ekim'de 5 → 2,5 mg'a düşürülmüş) yeniden değerlendirilmesi
+      düşünülebilir [1].<br />
+      (2) HGB 12,0 g/dL ile hafif anemi sürmektedir. RDW-CV ve RDW-SD yüksekliği
+      anizositozu göstermektedir. FerroSanolDuodenal kürlerinin (Eylül, Ekim)
+      etkisi kontrol edilmeli; gerekirse hematoloji konsültasyonu istenmelidir
+      [1].<br />
+      (3) aPTT 50,4 sn ile referans üstünde seyretmekte; warfarin kullanımında
+      beklenen bir durum olmakla birlikte, her yeni tahlilde takip edilmelidir
+      [1].
+    </div>
+
+    <!-- 8. ÖNERİLER -->
+    <h2><span class="section-num">8</span> Öneriler ve Öncelikli Aksiyonlar</h2>
+    <table>
+      <tr>
+        <th>#</th>
+        <th>Öneri</th>
+        <th>Öncelik</th>
+        <th>Temel Gerekçe</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>
+          Tansiyon takibini sıkılaştırın; günde 2–3 ölçüm (sabah + akşam). Son 7
+          gündeki yükseliş eğilimi (113/76 → 119/79) dikkate alınmalıdır.
+        </td>
+        <td><span class="badge badge-danger">Yüksek</span></td>
+        <td>
+          Aort grefti olan hastada sistolik &lt; 130 mmHg hedefi aşılmaktadır
+          (zirve 145/93) [1]
+        </td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>
+          Kardiyoloji / KVC uzmanı ile Coversyl dozunu (şu an 2,5 mg) gözden
+          geçirin. Gerekirse beta bloker (BelocZOK) yeniden değerlendirilebilir.
+        </td>
+        <td><span class="badge badge-danger">Yüksek</span></td>
+        <td>
+          29 Ekim'de doz yarıya düşürülmüş; sonrası tansiyon kademeli yükselme
+          eğiliminde [1]
+        </td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>
+          İkinci bir INR tahlili planlayın (2 haftalık aralık). Son doz artışı
+          (22,5 mg/hafta) sonrası INR 2,51'e ulaşmış; stabilite kontrolü
+          yapılmalıdır.
+        </td>
+        <td><span class="badge badge-warn">Orta</span></td>
+        <td>
+          14 doz değişikliği geçmişi; 19 Eki sonrası ilk stabilite doğrulaması
+          [1]
+        </td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>
+          Hemoglobin ve RDW parametrelerini 4–6 haftada bir takip edin.
+          Ferritin, B12, folat düzeyleri kontrol edilmeli; gerekirse hematoloji
+          konsültasyonu istenmelidir.
+        </td>
+        <td><span class="badge badge-warn">Orta</span></td>
+        <td>
+          HGB 12,0 (alt sınır 13,0), RDW-CV 23,3, RDW-SD 71,5 — anizositoz
+          mevcut [1]
+        </td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>
+          Sternal yara bölgesini haftalık olarak görsel olarak kontrol edin.
+          Kızarıklık, akıntı, ağrı artışı veya ateş durumunda acil KVC başvurusu
+          yapın.
+        </td>
+        <td><span class="badge badge-warn">Orta</span></td>
+        <td>
+          Temmuz'daki dehissans öyküsü; mekanik protezli hastada enfeksiyon
+          riski ömür boyu artmış [1]
+        </td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>
+          Antibiyotik başlanacaksa mutlaka warfarin etkileşimini hekiminize
+          bildirin. Cipro, Moksifloksasin, Amoksisilin gibi ilaçlar INR'ı
+          yükseltebilir.
+        </td>
+        <td><span class="badge badge-warn">Orta</span></td>
+        <td>
+          Mart–Nisan döneminde bu etkileşim 6 doz kesintisi gerektirmiştir [1]
+        </td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>
+          Yıllık ekokardiyografi ve aort BT takibi (transaortik / toraks BT)
+          planlanmalıdır. Mekanik kapak fonksiyonu ve greft bütünlüğü kontrol
+          edilmelidir.
+        </td>
+        <td><span class="badge badge-info">Rutin</span></td>
+        <td>
+          Bentall prosedürü sonrası standart uzun vadeli izlem protokolü [1]
+        </td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>
+          Fiziksel aktiviteyi doktor onayıyla kademeli artırın (yürüyüş, hafif
+          egzersiz). Ağır kaldırma, Valsalva manevrası ve temas sporlarından
+          kaçının.
+        </td>
+        <td><span class="badge badge-info">Rutin</span></td>
+        <td>
+          Sternal kaynama + aort grefti; aşırı intraabdominal torakal basınç
+          riskli [1]
+        </td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>
+          Dental müdahalelerde (çekim, implant vb.) öncesinde her zaman
+          endokardit profilaksisi konusunda KVC hekiminize danışın.
+        </td>
+        <td><span class="badge badge-info">Rutin</span></td>
+        <td>
+          Mekanik kapak + sternal protez; protetik kapak endokarditi ömür boyu
+          risk [1]
+        </td>
+      </tr>
+    </table>
+
+    <!-- 9. GENEL DEĞERLENDİRME -->
+    <h2><span class="section-num">9</span> Genel Değerlendirme ve Sonuç</h2>
+    <p>
+      270 günlük bu kapsamlı klinik veri akışının bütüncül değerlendirmesinde,
+      19 Şubat 2026'daki yaşamı tehdit eden Tip A aort diseksiyonu sonrası
+      gerçekleştirilen acil Bentall prosedürünün başarılı olduğu ve hastanın
+      ameliyat sonrası kritik fazı atlatmış göründüğü görülmektedir. Mart
+      ayındaki sternal yara enfeksiyonu, Nisan ayındaki hipertansif krizler ve
+      Temmuz ayındaki sternal dehissans ciddi ama yönetilebilir komplikasyonlar
+      olarak kayıtlara geçmiştir; her birinin uygun tedaviyle kontrol altına
+      alındığı izlenmektedir [1].
+    </p>
+    <p>
+      Mevcut laboratuver tablosu (INR 2,51, CRP 4,4, WBC 7,83, Kreatinin 0,98,
+      ALT/AST normal) enfeksiyonun kontrol altında olduğunu, koagülasyonun
+      terapötik pencerede olduğunu ve organ fonksiyonlarının stabil olduğunu
+      göstermektedir. En belirgin devam eden sorun, hâlâ alt sınırlarda seyreden
+      hemoglobin (12,0 g/dL) ve buna eşlik eden anizositozdur (RDW-CV 23,3,
+      RDW-SD 71,5); bu tablo demir eksikliği anemisi ile uyumlu olup düzenli
+      takip ve gerekirse hematoloji desteği gerektirmektedir [1].
+    </p>
+    <p>
+      En kritik yakınsal uyarı, son 7–10 günde tansiyon ortalamasının kademeli
+      olarak yükselmesi (111/75 → 117/78 → 119/79) ve zirve değerin 145/93
+      mmHg'ye ulaşmasıdır. Aort greftli bir hasta için 130 mmHg sistolik altı
+      hedefi aşıldığında, Coversyl dozu ve gerekirse ek antihipertansif strateji
+      en kısa sürede hekiminizle değerlendirilmelidir [1].
+    </p>
+    <p>
+      Genel itibarıyla, tedavi ekibi; warfarin titrasyonu, çoklu antibiyotik
+      kürleri, LMWH köprülemesi, diüretik ve antihipertansif ayarlamaları ile
+      kompleks bir post-operatif süreci büyük ölçüde başarılı şekilde
+      yönetmiştir. Mevcut beş ilaıklık aktif rejim (Warfmadin, EcopirinPro,
+      Coversyl, Dilatrend, Panto) dengeli ve klinik gereksinimlere uygun
+      görünmektedir. Düzenli takip, tansiyon kontrolü ve anemi yönetimi
+      önümüzdeki dönemde en önemli öncelikler olmaya devam etmelidir [1].
+    </p>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <p>
+        Bu rapor, 16 Kasım 2026 tarihli veri dışa aktarmasına [1] dayanarak
+        otomatik olarak oluşturulmuştur.<br />
+        Bilgilendirme amaçlıdır ve hekim muayenesinin, tanısının veya tedavi
+        kararının yerini <strong>alamaz</strong>.<br />
+        Herhangi bir tedavi değişikliği, doz ayarlaması veya yeni tanı için
+        mutlaka tedavi ekibinize başvurun.<br /><br />
+        Rapor tarihi: 16 Kasım 2026 &nbsp;|&nbsp; Hastane kaydı: TC 00000000000
+        &nbsp;|&nbsp; Defne / Hatay
+      </p>
+    </div>
+  </body>
+</html>
