@@ -221,5 +221,8 @@
   {"at":"2026-11-08 06:35","model":"Weight","user_id":1,"weight":79.1},
   {"at":"2026-11-09 07:19","model":"Weight","user_id":1,"weight":79.8},
   {"at":"2026-11-10 06:00","model":"Weight","user_id":1,"weight":79.5},
-  {"at":"2026-11-11 07:35","model":"Weight","user_id":1,"weight":79.5}
+  {"at":"2026-11-11 07:35","model":"Weight","user_id":1,"weight":79.5},
+  {"at":"2026-11-16 07:00","model":"Weight","user_id":1,"weight":79.8},
+  {"at":"2026-11-17 06:14","model":"Weight","user_id":1,"weight":79.4},
+  {"at":"2026-11-18 07:05","model":"Weight","user_id":1,"weight":79.3}
 ]
