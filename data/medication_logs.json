@@ -1657,5 +1657,22 @@
   {"at":"2026-11-24 08:00","model":"MedLog","user_id":1,"med":"Dilatrend","dose":6.25},
   {"at":"2026-11-24 08:15","model":"MedLog","user_id":1,"med":"EcopirinPro","dose":81},
   {"at":"2026-11-24 19:30","model":"MedLog","user_id":1,"med":"Dilatrend","dose":6.25},
-  {"at":"2026-11-24 20:30","model":"MedLog","user_id":1,"med":"Warfmadin","dose":2.5}
+  {"at":"2026-11-24 20:30","model":"MedLog","user_id":1,"med":"Warfmadin","dose":2.5},
+  {"at":"2026-11-25 06:30","model":"MedLog","user_id":1,"med":"FerroSanolDuodenal","dose":100},
+  {"at":"2026-11-25 07:25","model":"MedLog","user_id":1,"med":"Panto","dose":40},
+  {"at":"2026-11-25 07:50","model":"MedLog","user_id":1,"med":"Dilatrend","dose":6.25},
+  {"at":"2026-11-25 08:10","model":"MedLog","user_id":1,"med":"EcopirinPro","dose":81},
+  {"at":"2026-11-25 19:30","model":"MedLog","user_id":1,"med":"Dilatrend","dose":6.25},
+  {"at":"2026-11-25 20:30","model":"MedLog","user_id":1,"med":"Warfmadin","dose":2.5},
+  {"at":"2026-11-26 06:25","model":"MedLog","user_id":1,"med":"FerroSanolDuodenal","dose":100},
+  {"at":"2026-11-26 07:25","model":"MedLog","user_id":1,"med":"Panto","dose":40},
+  {"at":"2026-11-26 07:50","model":"MedLog","user_id":1,"med":"Dilatrend","dose":6.25},
+  {"at":"2026-11-26 08:00","model":"MedLog","user_id":1,"med":"EcopirinPro","dose":81},
+  {"at":"2026-11-26 19:30","model":"MedLog","user_id":1,"med":"Dilatrend","dose":6.25},
+  {"at":"2026-11-26 20:30","model":"MedLog","user_id":1,"med":"Warfmadin","dose":2.5},
+  {"at":"2026-11-27 07:25","model":"MedLog","user_id":1,"med":"Panto","dose":40},
+  {"at":"2026-11-27 08:00","model":"MedLog","user_id":1,"med":"Dilatrend","dose":6.25},
+  {"at":"2026-11-27 08:15","model":"MedLog","user_id":1,"med":"EcopirinPro","dose":81},
+  {"at":"2026-11-27 19:30","model":"MedLog","user_id":1,"med":"Dilatrend","dose":6.25},
+  {"at":"2026-11-27 20:30","model":"MedLog","user_id":1,"med":"Warfmadin","dose":2.5}
 ]
